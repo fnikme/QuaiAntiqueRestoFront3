@@ -6,12 +6,15 @@ const inputMail = document.getElementById("EmailInput");
 const inputPassword = document.getElementById("PasswordInput");
 const inputValidationPassword = document.getElementById("ValidatePasswordInput");
 const btnValidation = document.getElementById("btn-validation-inscription");
+const formIncription = document.getElementById("formulaireInscription");
 
 inputNom.addEventListener("keyup", validateFrom);
 inputPreNom.addEventListener("keyup", validateFrom);
 inputMail.addEventListener("keyup", validateFrom);
 inputPassword.addEventListener("keyup", validateFrom);
 inputValidationPassword.addEventListener("keyup", validateFrom);
+
+btnValidation.addEventListener("click",InscrireUtilisateur);
 
 //Function permettant de valider tout formulaire
 function validateFrom(){
@@ -74,18 +77,45 @@ function validateMail(input){
     }
 }
 
-    function validateRequired(input){
-        if(input.value !=''){
-            input.classList.add("is-valid");
-            input.classList.remove("is-invalid");
-            return true;
-        }
-        else{
-            input.classList.remove("is-valid");
-            input.classList.add("is-invalid");
-            return false;
-        }
+function validateRequired(input){
+     if(input.value !=''){
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid");
+        return true;
     }
+    else{
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+        return false;
+    }
+}
 
+function InscrireUtilisateur(){
+    let dataForm = new FormData(formIncription);
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+
+    let raw = JSON.stringify({
+        "firstName": dataForm.get("nom"),
+        "lastName": dataForm.get("prenom"),
+        "email": dataForm.get("email"),
+        "password": dataForm.get("mdp")
+    });
+
+
+    let requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+};
+
+    fetch("http://localhost:8000/api/registration", requestOptions)
+    .then((response) => response.json())
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+}
 
 
