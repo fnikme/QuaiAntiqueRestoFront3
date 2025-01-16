@@ -40,7 +40,7 @@ function validateConfirmationPassword(inputPwd, inputConfirmPwd){
         return true;
     }
     else{inputConfirmPwd.classList.add("is-invalid");
-         inputConfirmPwd.classList.remove("is-valid");
+        inputConfirmPwd.classList.remove("is-valid");
         return false;
     }
 }
@@ -78,7 +78,7 @@ function validateMail(input){
 }
 
 function validateRequired(input){
-     if(input.value !=''){
+    if(input.value !=''){
         input.classList.add("is-valid");
         input.classList.remove("is-invalid");
         return true;
@@ -100,22 +100,22 @@ function InscrireUtilisateur(){
     let raw = JSON.stringify({
         "firstName": dataForm.get("nom"),
         "lastName": dataForm.get("prenom"),
-        "email": dataForm.get("email"),
+        "email": dataForm.get("email"), 
         "password": dataForm.get("mdp")
     });
 
 
     let requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-};
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-    fetch("http://localhost:8000/api/registration", requestOptions)
+    fetch("http://127.0.0.1:8000/api/registration", requestOptions)
     .then((response) => response.json())
     .then((result) => console.log(result))
-    .catch((error) => console.error(error));
+    .catch((error) => console.log('error', error));
 }
 
 
