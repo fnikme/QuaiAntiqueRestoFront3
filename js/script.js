@@ -2,6 +2,7 @@
 const tokenCookieName = "accesstoken";
 const RoleCookieName ="role";
 const signoutBtn = document.getElementById("signout-btn");
+const apiUrl = "http://127.0.0.1:8000/api/";
 
 signoutBtn.addEventListener("click", signout);
 
@@ -72,22 +73,22 @@ function showAndHideElementsForRoles(){
     allElementsToEdit.forEach(element =>{
         switch(element.dataset.show){
             case 'disconnected': 
-                 if(userConnected){
+                if(userConnected){
                     element.classList.add("d-none");
                 }
                 break;
             case 'connected': 
-                 if(!userConnected){
+                if(!userConnected){
                     element.classList.add("d-none");
                 }
                 break;
             case 'admin': 
-                 if(!userConnected || role != "admin"){
+                if(!userConnected || role != "admin"){
                     element.classList.add("d-none");
                 }
                 break;
             case 'client': 
-                 if(!userConnected || role != "client"){
+                if(!userConnected || role != "client"){
                     element.classList.add("d-none");
                 }
                 break;
