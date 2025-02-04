@@ -83,10 +83,17 @@ function showAndHideElementsForRoles(){
                 }
                 break;
             case 'client': 
-                if(!userConnected || role != "admin"){
+                if(!userConnected || role != "client"){
                     element.classList.add("d-none");
                 }
                 break;
         }
     })
+}
+
+function sanitizeHtml(text){
+    const tempHtml = document.createElement('div');
+    tempHtml.textContent = text;
+    return tempHtml.innerHTML;
+
 }
