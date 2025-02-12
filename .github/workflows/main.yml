@@ -12,7 +12,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp-fnikme.alwaysdata.net
-        username: fnikme
+        username: fnikme_test
         password: ${{ secrets.ftp_password }}
         server-dir: /www/
         exclude: |
