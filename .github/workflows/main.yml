@@ -15,6 +15,7 @@ jobs:
         username: fnikme_test
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /www/
+        port: 990
         exclude: |
           **/.git*
           **/.git*/**
